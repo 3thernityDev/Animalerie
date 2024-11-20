@@ -22,6 +22,9 @@ class Adresse
     #[ORM\Column]
     private ?float $postal = null;
 
+    #[ORM\OneToOne(mappedBy: 'adresse', cascade: ['persist', 'remove'])]
+    private ?Animalerie $animalerie = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,28 @@ class Adresse
     public function setPostal(float $postal): static
     {
         $this->postal = $postal;
+
+        return $this;
+    }
+
+    public function getAnimalerie(): ?Animalerie
+    {
+        return $this->animalerie;
+    }
+
+    public function setAnimalerie(?Animalerie $animalerie): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($animalerie === null && $this->animalerie !== null) {
+            $this->animalerie->setAdresse(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($animalerie !== null && $animalerie->getAdresse() !== $this) {
+            $animalerie->setAdresse($this);
+        }
+
+        $this->animalerie = $animalerie;
 
         return $this;
     }

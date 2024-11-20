@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -27,6 +29,17 @@ class Product
 
     #[ORM\Column]
     private ?bool $isActive = null;
+
+    /**
+     * @var Collection<int, Animalerie>
+     */
+    #[ORM\ManyToMany(targetEntity: Animalerie::class, mappedBy: 'Products')]
+    private Collection $animaleries;
+
+    public function __construct()
+    {
+        $this->animaleries = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -89,6 +102,33 @@ class Product
     public function setActive(bool $isActive): static
     {
         $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Animalerie>
+     */
+    public function getAnimaleries(): Collection
+    {
+        return $this->animaleries;
+    }
+
+    public function addAnimalery(Animalerie $animalery): static
+    {
+        if (!$this->animaleries->contains($animalery)) {
+            $this->animaleries->add($animalery);
+            $animalery->addProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnimalery(Animalerie $animalery): static
+    {
+        if ($this->animaleries->removeElement($animalery)) {
+            $animalery->removeProduct($this);
+        }
 
         return $this;
     }

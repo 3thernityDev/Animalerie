@@ -22,6 +22,9 @@ class Animal
     #[ORM\Column]
     private ?float $birthday = null;
 
+    #[ORM\ManyToOne(inversedBy: 'animals')]
+    private ?Animalerie $animalerie = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Animal
     public function setBirthday(float $birthday): static
     {
         $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    public function getAnimalerie(): ?Animalerie
+    {
+        return $this->animalerie;
+    }
+
+    public function setAnimalerie(?Animalerie $animalerie): static
+    {
+        $this->animalerie = $animalerie;
 
         return $this;
     }
