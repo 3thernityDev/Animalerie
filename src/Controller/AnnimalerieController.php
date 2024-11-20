@@ -26,7 +26,7 @@ class AnnimalerieController extends AbstractController
 
         $petShop = new Animalerie();
         $petShop->setName("TytyAndHisLitlleFriends");
-
+ 
         $adresse = new Adresse();
         $adresse->setNumber(18);
         $adresse->setStreetname("Chemin des bestiole");
