@@ -1,3 +1,19 @@
 body {
-    background-color: skyblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: burlywood;
+    color: whitesmoke;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+}
+
+.animalerie-container {
+    background-color: chocolate;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.animalerie-container li {
+    margin-bottom: 1rem;
 }

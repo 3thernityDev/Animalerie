@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Animalerie
+{% endblock %}
+
+{% block body %}
+	{% block javascripts %}
+		{% block importmap %}
+			{{ importmap('app') }}
+		{% endblock %}
+	{% endblock %}
+
+	<div class="animalerie-container">
+		<h1>Liste des animaleries :</h3>
+
+		{% if animaleries is empty %}
+			<p>Aucune animalerie trouvée.</p>
+		{% else %}
+			<ul>
+				{% for animalerie in animaleries %}
+					<li>
+						<strong>{{ animalerie.name }}</strong><br>
+						Adresse :
+						{{ animalerie.adresse.number }}
+						{{ animalerie.adresse.streetname }},
+						{{ animalerie.adresse.postal }}
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+{% endblock %}
+
