@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AnimalRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
@@ -19,11 +20,11 @@ class Animal
     #[ORM\Column(length: 255)]
     private ?string $sex = null;
 
-    #[ORM\Column]
-    private ?float $birthday = null;
-
     #[ORM\ManyToOne(inversedBy: 'animals')]
     private ?Animalerie $animalerie = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $birthday = null;
 
     public function getId(): ?int
     {
@@ -54,18 +55,6 @@ class Animal
         return $this;
     }
 
-    public function getBirthday(): ?float
-    {
-        return $this->birthday;
-    }
-
-    public function setBirthday(float $birthday): static
-    {
-        $this->birthday = $birthday;
-
-        return $this;
-    }
-
     public function getAnimalerie(): ?Animalerie
     {
         return $this->animalerie;
@@ -74,6 +63,18 @@ class Animal
     public function setAnimalerie(?Animalerie $animalerie): static
     {
         $this->animalerie = $animalerie;
+
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(\DateTimeInterface $birthday): static
+    {
+        $this->birthday = $birthday;
 
         return $this;
     }

@@ -12,7 +12,7 @@
     {% endblock %}
 
     <div class="container">
-        <h1>Liste des produits</h1> 
+        <h1>🛍️Liste des produits</h1> 
 
         {% if products is empty %}
             <p>Aucun produit trouvé.</p> 
@@ -23,7 +23,7 @@
                         <li>
                             <strong>{{ product.name }}</strong><br>
                             <h3>Prix</h3>
-                            <p>{{ product.prix }}</p>
+                            <p>{{ product.prix }}€</p>
                             <h3>Description</h3>
                             <p>{{ product.description }}</p>
                             <h3>Produit actif ?</h3>

@@ -40,7 +40,7 @@ class AnimalerieController extends AbstractController
 
 
 
-        return $this->render('animalerieId/index.html.twig', [
+        return $this->render('animalerie/animalerieId.html.twig', [
             'controller_name' => 'AnimalerieController',
             'animalerie' => $animalerie,
         ]);

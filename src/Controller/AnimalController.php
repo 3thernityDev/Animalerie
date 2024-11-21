@@ -2,44 +2,43 @@
 
 namespace App\Controller;
 
-use DateTime;
+use App\Entity\Animal;
 use DateTimeImmutable;
 use App\Entity\Product;
-use Doctrine\ORM\EntityManager;
-use App\Repository\ProductRepository;
+use App\Repository\AnimalRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class ProduitController extends AbstractController
+class AnimalController extends AbstractController
 {
-    private ProductRepository $productRepository;
+    private AnimalRepository $animalRepository;
 
     // Injection du repository dans le constructeur
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(AnimalRepository $animalRepository)
     {
-        $this->productRepository = $productRepository;
+        $this->animalRepository = $animalRepository;
     }
 
 
-    #[Route('/produits', name: 'app_produit')]
+    #[Route('/animals', name: 'app_animal')]
     public function searchAll(): Response
     {
-        $products = $this->productRepository->findAll();
+        $animals = $this->animalRepository->findAll();
 
-        return $this->render('produit/index.html.twig', [
-            'controller_name' => 'AnimalerieController',
-            'products' => $products,
+        return $this->render('animal/index.html.twig', [
+            'controller_name' => 'AnimalController',
+            'animals' => $animals
         ]);
     }
 
-    #[Route('/createProduit', name: 'app_produit_create')]
+
+    #[Route('/createAnimal', name: 'app_animal_create')]
     public function create(Request $request, EntityManagerInterface $em): Response
     {
         // $croquette = new Product();
@@ -52,32 +51,26 @@ class ProduitController extends AbstractController
         // $em->persist($croquette); // Rend les données persistantes
         // $em->flush(); // Envoie à la BDD
 
-        $produit = new Product();
-        $form = $this->createFormBuilder($produit)
+        $animal = new Animal();
+        $form = $this->createFormBuilder($animal)
             ->add("name", TextType::class, [
-                'label' => 'Nom du produit'
+                'label' => 'Nom de l"animal'
             ])
-            ->add("description", TextareaType::class, [
-                'label' => 'Description'
-            ])
-            ->add("prix", NumberType::class, [
-                'label' => 'Prix'
-            ])
+            ->add("sex",)
+            ->add("birthday", DateType::class)
             ->add("Envoyer", SubmitType::class)
 
             ->getForm();
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
-            $produit->setCreateAt(new DateTimeImmutable());
-            $produit->setActive(true);
-            $productData = $form->getData();
-            $em->persist($productData);
+            $animalData = $form->getData();
+            $em->persist($animalData);
             $em->flush();
         }
 
 
-        return $this->render('produit/createProduct.html.twig', [
+        return $this->render('animal/createAnimal.html.twig', [
             'controller_name' => 'ProduitController',
             "form" => $form
         ]);

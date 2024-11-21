@@ -92,6 +92,7 @@ form label {
 /* Champs de saisie */
 form input[type="text"],
 form input[type="email"],
+form input[type="date"],
 form input[type="password"],
 form textarea {
     width: 100%;
@@ -102,6 +103,8 @@ form textarea {
     font-size: 16px;
     transition: border-color 0.3s;
 }
+
+
 
 /* Effet de focus */
 form input:focus,
