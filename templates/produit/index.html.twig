@@ -11,13 +11,13 @@
         {% endblock %}
     {% endblock %}
 
-    <div class="animalerie-container">
+    <div class="container">
         <h1>Liste des produits</h1> 
 
         {% if products is empty %}
             <p>Aucun produit trouvé.</p> 
         {% else %}
-            <div class="productsInfo">
+            <div class="Info">
                 <ul>
                     {% for product in products %}
                         <li>
