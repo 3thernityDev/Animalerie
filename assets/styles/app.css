@@ -4,17 +4,17 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #f5f5f5; /* Slightly softer background */
+    background-color: #f5f5f5; 
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
         sans-serif;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 /* Header styling */
 header {
-    background-color: #d2691e; /* Rich chocolate color */
+    background-color: #d2691e; 
     width: 100%;
     display: flex;
     align-items: center;
@@ -24,17 +24,17 @@ header {
     color: #fff;
     font-size: 1.5rem;
     text-transform: uppercase;
-    animation: slideDown 1s ease-in-out; /* Entry animation */
+    animation: slideDown 1s ease-in-out; 
 }
 
 /* Container styling */
 .animalerie-container {
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Modern shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     padding: 2rem;
     border-radius: 1rem;
     text-align: center;
-    animation: fadeIn 1s ease-in-out; /* Entry animation */
+    animation: fadeIn 1s ease-in-out; 
 }
 
 .animalerie-container ul {
@@ -44,12 +44,12 @@ header {
 
 .animalerie-container li {
     margin-bottom: 1rem;
-    transition: transform 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+    transition: transform 0.3s ease, color 0.3s ease; 
 }
 
 .animalerie-container li:hover {
-    transform: scale(1.05); /* Slight zoom effect */
-    color: #d2691e; /* Chocolate hover color */
+    transform: scale(1.05); 
+    color: #d2691e; 
 }
 
 /* Conteneur du formulaire */
@@ -112,6 +112,86 @@ form button {
 }
 
 form button:hover {
+    background-color: #ff6a00;
+}
+
+/* Conteneur principal */
+.productsInfo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #f8f9fa;
+}
+
+/* Liste */
+.productsInfo ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Carte produit */
+.productsInfo li {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
+}
+
+/* Effet hover */
+.productsInfo li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    color: #ff6a00; 
+}
+
+/* Titre du produit */
+.productsInfo li strong {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Sous-sections */
+.productsInfo li h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    color: #d2691e; 
+}
+
+/* Texte des informations */
+.productsInfo li p {
+    font-size: 1rem;
+    color: #555;
+    margin: 0.5rem 0 1rem 0;
+}
+
+/* Bouton (facultatif pour plus d'interaction) */
+.productsInfo li button {
+    background-color: #d2691e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: auto;
+}
+
+.productsInfo li button:hover {
     background-color: #ff6a00;
 }
 

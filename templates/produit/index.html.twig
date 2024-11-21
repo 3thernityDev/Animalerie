@@ -1,5 +1,37 @@
-{% extends 'base.html.twig' %} {% block title %}Hello ProduitController!{%
-endblock %} {% block body %}
-<h1>Création d'un produit</h1>
-{{ form(form) }}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Animalerie
+{% endblock %}
+
+{% block body %}
+    {% block javascripts %}
+        {% block importmap %}
+            {{ importmap('app') }}
+        {% endblock %}
+    {% endblock %}
+
+    <div class="animalerie-container">
+        <h1>Liste des produits</h1> 
+
+        {% if products is empty %}
+            <p>Aucun produit trouvé.</p> 
+        {% else %}
+            <div class="productsInfo">
+                <ul>
+                    {% for product in products %}
+                        <li>
+                            <strong>{{ product.name }}</strong><br>
+                            <h3>Prix</h3>
+                            <p>{{ product.prix }}</p>
+                            <h3>Description</h3>
+                            <p>{{ product.description }}</p>
+                            <h3>Produit actif ?</h3>
+                            <p>{{ product.isActive ? 'Oui' : 'Non' }}</p> 
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}
