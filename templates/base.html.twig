@@ -8,21 +8,56 @@
             href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"
         />
         {% block stylesheets %} {% endblock %} {% block javascripts %} {% block
-        importmap %}{{
+        importmap %}
+        {{
             importmap("app")
-        }}{% endblock %} {% endblock %}
+        }}
+        {% endblock %} {% endblock %}
     </head>
-    <header>
-        <h3>We need a hug and a home 🏡</h3>
-        <nav>
-            <ul>
-                <li><a href="/animaleries">🏡Adresse</a></li>
-                <li><a href="/produits">🛍️Produits</a></li>
-                <li><a href="/animals">🤝Nos pensionnaires</a></li>
-            </ul>
-        </nav>
-    </header>
     <body>
+        <header>
+            <h3>We need a hug and a home 🏡</h3>
+            <nav>
+                <ul>
+                    <li><a href="/animaleries">🏡 Adresse</a></li>
+                    {#
+                    <li><a href="/produits">🛍️ Produits</a></li>
+                    #}
+                    <li>
+                        <select
+                            name="products"
+                            id="products"
+                            onchange="window.location.href=this.value;"
+                        >
+                            <option value="">🛍️ Produits</option>
+                            <option value="/produits">Voir Produits</option>
+                            <option value="/createProduit">
+                                Créer Produits
+                            </option>
+                        </select>
+                    </li>
+                    {#
+                    <li><a href="/animals">🤝 Nos pensionnaires</a></li>
+                    #}
+                    <li>
+                        <select
+                            name="products"
+                            id="products"
+                            onchange="window.location.href=this.value;"
+                        >
+                            <option value="">🤝 Nos pensionnaires</option>
+                            <option value="/animals">
+                                Voir nos pensionnaires
+                            </option>
+                            <option value="/createAnimal">
+                                Créer un pensionnaires
+                            </option>
+                        </select>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
         {% block body %} {% endblock %}
     </body>
 </html>
